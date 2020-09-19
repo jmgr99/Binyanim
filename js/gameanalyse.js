@@ -1,3 +1,12 @@
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollX": true,
+        "bPaginate": false,
+        "bFilter": false,
+        "bInfo": false
+    } );
+} );
+
 const firebaseConfig = {
   apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
   authDomain: "testbase-c6baf.firebaseapp.com",
@@ -340,7 +349,6 @@ function refresh() {
   for (x of cbtimearray){boxertime(x)};
   function underground(verbform){for (x of exceptiontimearray){delete conjdict[verbform][x]}};
   for (var x in conjdict){underground(x)};
-  //console.log(conjdict);
   try{
   var verbformarray = Object.keys(conjdict);
   var verbform = verbformarray[Math.floor(Math.random() * verbformarray.length)];
@@ -355,53 +363,17 @@ function refresh() {
   document.getElementById("person").innerHTML = person;
   document.getElementById("a1").innerHTML = a1;}
   catch(err) {
+    if (round == 1) {
+        document.getElementById("errormessage").style.display = 'block';
+        document.getElementById("main").style.display = 'none';
+      } else {
     var a1 = document.getElementById('a1');
     erase(a1);
+    document.getElementById("main").style.display = 'none';
     document.getElementById("score").innerHTML = score;
     document.getElementById("savealert").style.display = 'block';
-    // Dummy Array
-var data = verbs;
-var data2 = verbverbform
-var data3 = verbtime
-var data4 = verbperson
-var data5 = correctionform
-var data6 = correctiontense
-var data7 = correctionperson
-
-
-
-// Draw HTML table
-var perrow = 1, // 1 cells per row
- //   html =  "<thead><tr><th>Verb</th><th>Form</th><th></th><th>Tense</th><th></th><th>Person</th><th></th></tr></thead><tbody>";
-	html = "<tr>"
-// Loop through array and add table cells
-for (var i=0; i<data.length; i++) {
-
-  html += "<td>" + data[i] + "</td>" + "<td>" + data2[i] + "</td>" + "<td>" + data5[i] + "</td>" + "<td>" + data3[i] + "</td>" + "<td>" + data6[i] + "</td>" + "<td>" + data4[i] + "</td>" + "<td>" + data7[i] + "</td>" + "</tr>";
-
-  // If you need to click on the cell and do something
-  // html += "<td onclick='FUNCTION()'>" + data[i] + "</td>";
-
-  // Break into next row
-  var next = i+1;
-  if (next%perrow==0 && next!=data.length) {
-    html += "</tr><tr>";
-  }
-}
-html += "</tr>";
-                tableBody = $("tabletable tbody"); 
-                tableBody.append(html);
-	  	
-// Attach HTML to container
-//document.getElementById("tabletable").innerHTML = html;
-var table = document.getElementById("tabletable");
-for (var i = 0, row; row = table.rows[i]; i++) {
-   //iterate through rows
-   //rows would be accessed using the "row" variable assigned in the for loop
-
-   }
-    document.getElementById("hider").style.display = 'block';
-  };
+    document.getElementById("hider").style.display = 'block';}}
+      //if (counter == data.length){}};
 
   var aa1 = document.getElementById('aa1');
   var successAlert1 = document.getElementById('successAlert1');
@@ -433,8 +405,16 @@ function myFunction() {
 	  aa1.style.display = "none";
 	}
 	}
-
+var counter = 0;
 	function correct() {
+    var data = verbs;
+    var data2 = verbverbform
+    var data3 = correctionform
+    var data4 = verbtime
+    var data5 = correctiontense
+    var data6 = verbperson
+    var data7 = correctionperson
+    var t = $('#example').DataTable();
 		var inputValform = document.getElementById("binyan").value;
 		var answerform = document.getElementById("formm").innerText;
 		var inputValtime = document.getElementById("time/mood").value;
@@ -478,21 +458,26 @@ function myFunction() {
         console.log('pointdown')} else {correctionperson.push(decode_utf8('\xE2\x9C\x85'));
         score++;
         console.log('pointup')};
-
-
-
-		};
-		var successAlert1 = document.getElementById('successAlert1');
-		var errorAlert1 = document.getElementById('errorAlert1');
-		var successAlert2 = document.getElementById('successAlert2');
-		var errorAlert2 = document.getElementById('errorAlert2');
-		var successAlert3 = document.getElementById('successAlert3');
-		var errorAlert3 = document.getElementById('errorAlert3');
+    console.log(counter);
+    t.row.add( [data[counter],
+              data2[counter],
+              data3[counter],
+              data4[counter],
+              data5[counter],
+              data6[counter],
+              data7[counter],
+    ] ).draw( false );
+    return counter == counter++};
+var successAlert1 = document.getElementById('successAlert1');
+var errorAlert1 = document.getElementById('errorAlert1');
+var successAlert2 = document.getElementById('successAlert2');
+var errorAlert2 = document.getElementById('errorAlert2');
+var successAlert3 = document.getElementById('successAlert3');
+var errorAlert3 = document.getElementById('errorAlert3');
 
 
 function global(){
 if (round == 0) {refresh()} else {
-console.log(corrected)
 var errorAlert1 = document.getElementById('errorAlert1');
 var successAlert1 = document.getElementById('successAlert1');
 if (corrected == 0){correct();
@@ -515,20 +500,14 @@ let db = firebase.firestore();
 //let score = 0;
 
 function updateScores() {
-    // Clear current scores in our scoreboard
-    document.getElementById('scoreboard').innerHTML = '<tr><th>Name</th><th>Score</th></tr>';
-
-    // Get the top 5 scores from our scoreboard
-    db.collection("scores").orderBy("score", "desc").limit(5).get().then((snapshot) => {
+    var t2 = $('#scores').DataTable();
+    db.collection("scores").orderBy("score", "desc").get().then((snapshot) => {
         snapshot.forEach((doc) => {
-            document.getElementById('scoreboard').innerHTML += '<tr>' +
-            '<td>' + doc.data().name + '</td>' +
-            '<td>' + doc.data().score + '</td>' +
-            '</tr>';
-        })
-    })
-
-}
+            t2.row.add( [doc.data().name, doc.data().score
+            ] ).draw( false );})})
+          document.getElementById("hider2").style.display = 'block';
+          document.getElementById("again").style.display = 'block';
+          document.getElementById("h3").style.display = 'none';}
 
 function saveScore() {
     // Get name from input box
@@ -551,6 +530,44 @@ function saveScore() {
     } else {
         alert('Please enter a name');
     }
-document.getElementById("tabletable").style.display = 'none';
-document.getElementById("scoreboard").style.display = 'block';
-}
+document.getElementById("hider").style.display = 'none';
+//document.getElementById("scoreboard").style.display = 'block';
+};
+var selectallform = 0;
+
+function selectallForm(){
+  if (selectallform == 0) {
+  document.getElementById("qal").checked = true;
+  document.getElementById("nifal").checked = true;
+  document.getElementById("piel").checked = true;
+  document.getElementById("pual").checked = true;
+  document.getElementById("hifil").checked = true;
+  document.getElementById("hofal").checked = true;
+  document.getElementById("hitpael").checked = true;
+  return selectallform = 1;
+  } else {
+    document.getElementById("qal").checked = false;
+  document.getElementById("nifal").checked = false;
+  document.getElementById("piel").checked = false;
+  document.getElementById("pual").checked = false;
+  document.getElementById("hifil").checked = false;
+  document.getElementById("hofal").checked = false;
+  document.getElementById("hitpael").checked = false;
+  return selectallform = 0;};};
+
+var selectalltense = 0;
+function selectallTense(){
+  if (selectalltense == 0) {
+  document.getElementById("perfect").checked = true;
+  document.getElementById("imperfect").checked = true;
+  document.getElementById("imperative").checked = true;
+  document.getElementById("infinitive").checked = true;
+  document.getElementById("participle").checked = true;
+  return selectalltense = 1;
+  } else {
+  document.getElementById("perfect").checked = false;
+  document.getElementById("imperfect").checked = false;
+  document.getElementById("imperative").checked = false;
+  document.getElementById("infinitive").checked = false;
+  document.getElementById("participle").checked = false;
+  return selectalltense = 0;};};
