@@ -7,9 +7,12 @@ $(document).ready(function() {
     } );
 } );
 $(document).ready(function() {
-$("#includedNavbar").load("https://www.binyan.im/navbar.html");
-    } );
+	$("#includedNavbar").load("https://www.binyan.im/navbar.html");
 } );
+
+
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
