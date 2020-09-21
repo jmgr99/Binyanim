@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("#includedNavbar").load("https://www.binyan.im/navbar.html");
     $('#example').DataTable( {
         "scrollX": true,
         "bPaginate": false,
