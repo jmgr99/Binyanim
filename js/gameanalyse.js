@@ -6,24 +6,17 @@ $(document).ready(function() {
         "bInfo": false
     } );
 } );
-$(document).ready(function() {
-	$("#includedNavbar").load("https://www.binyan.im/navbar.html");
-} );
 
-
-
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
-  authDomain: "testbase-c6baf.firebaseapp.com",
-  databaseURL: "https://testbase-c6baf.firebaseio.com",
-  projectId: "testbase-c6baf",
-  storageBucket: "testbase-c6baf.appspot.com",
-  messagingSenderId: "986174073958",
-  appId: "1:986174073958:web:2ad398c369d8772dc091a7",
-  measurementId: "G-51XCK3G98W"
-};
+//const firebaseConfig = {
+//  apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
+//  authDomain: "testbase-c6baf.firebaseapp.com",
+//  databaseURL: "https://testbase-c6baf.firebaseio.com",
+//  projectId: "testbase-c6baf",
+//  storageBucket: "testbase-c6baf.appspot.com",
+//  messagingSenderId: "986174073958",
+//  appId: "1:986174073958:web:2ad398c369d8772dc091a7",
+//  measurementId: "G-51XCK3G98W"
+//};
 function encode_utf8(s) {
   return unescape(encodeURIComponent(s));
 }
@@ -501,45 +494,45 @@ else {refresh()};
 
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+//firebase.initializeApp(firebaseConfig);
 // Setup access to the database
-let db = firebase.firestore();
+//let db = firebase.firestore();
 //let score = 0;
 
 function updateScores() {
-    var t2 = $('#scores').DataTable();
-    db.collection("scores").orderBy("score", "desc").get().then((snapshot) => {
-        snapshot.forEach((doc) => {
-            t2.row.add( [doc.data().name, doc.data().score
-            ] ).draw( false );})})
+    //var t2 = $('#scores').DataTable();
+    //db.collection("scores").orderBy("score", "desc").get().then((snapshot) => {
+    //    snapshot.forEach((doc) => {
+    //        t2.row.add( [doc.data().name, doc.data().score
+    //        ] ).draw( false );})})
           document.getElementById("hider2").style.display = 'block';
           document.getElementById("again").style.display = 'block';
           document.getElementById("h3").style.display = 'none';}
 
-function saveScore() {
-    // Get name from input box
-    let name = document.getElementById('name').value;
-
-    // Make sure name has a value, if not send alert.
-    if(name !== "") {
-        // Add a new document in collection "scores"
-        db.collection("scores").doc().set({
-            name: name,
-            score: score
-        })
-        .then(function() {
-            console.log("Document successfully written!");
-            updateScores();
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
-    } else {
-        alert('Please enter a name');
-    }
-document.getElementById("hider").style.display = 'none';
-//document.getElementById("scoreboard").style.display = 'block';
-};
+//function saveScore() {
+//    // Get name from input box
+//    let name = document.getElementById('name').value;
+//
+//    // Make sure name has a value, if not send alert.
+//    if(name !== "") {
+//        // Add a new document in collection "scores"
+//        db.collection("scores").doc().set({
+//            name: name,
+//            score: score
+//        })
+//        .then(function() {
+//            console.log("Document successfully written!");
+//            updateScores();
+//        })
+//        .catch(function(error) {
+//            console.error("Error writing document: ", error);
+//        });
+//    } else {
+//        alert('Please enter a name');
+//    }
+//document.getElementById("hider").style.display = 'none';
+////document.getElementById("scoreboard").style.display = 'block';
+//};
 var selectallform = 0;
 
 function selectallForm(){
