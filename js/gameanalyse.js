@@ -6,9 +6,6 @@
 //        "bInfo": false
 //    } );
 //} );
-$(document).ready( function () {
-    $('#example').DataTable();
-} );
 //const firebaseConfig = {
 //  apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
 //  authDomain: "testbase-c6baf.firebaseapp.com",
