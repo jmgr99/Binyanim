@@ -1,11 +1,11 @@
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollX": true,
-        "bPaginate": false,
-        "bFilter": false,
-        "bInfo": false
-    } );
-} );
+//$(document).ready(function() {
+//    $('#example').DataTable( {
+//        "scrollX": true,
+//        "bPaginate": false,
+//        "bFilter": false,
+//        "bInfo": false
+//    } );
+//} );
 
 //const firebaseConfig = {
 //  apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
