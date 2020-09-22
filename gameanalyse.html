@@ -8,8 +8,11 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.22/datatables.min.js"></script>
 <script type="text/javascript" src="https://www.binyan.im/js/gameanalyse.js"></script>
         <script>
+      function load_home() {
+     document.getElementById("includedNavbar").innerHTML='<object type="text/html" data=""https://www.binyan.im/navbar.html"" ></object>';}
+      </script>
+      <script>
         $(document).ready(function() {
-    $("#includedNavbar").load("https://www.binyan.im/navbar.html");
     $('#example').DataTable( {
         "scrollX": true,
         "bPaginate": false,
