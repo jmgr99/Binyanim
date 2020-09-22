@@ -11,6 +11,14 @@
         $(function navbar(){
           $("#includedNavbar").load("https://www.binyan.im/navbar.html");
           });
+        $(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollX": true,
+        "bPaginate": false,
+        "bFilter": false,
+        "bInfo": false
+    } );
+} );
         </script>
 <title>Game Analyse</title>
 </head>
