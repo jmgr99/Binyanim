@@ -354,6 +354,7 @@ function refresh() {
   document.getElementById("person").innerHTML = person;
   document.getElementById("a1").innerHTML = a1;}
   catch(err) {
+	console.log(err)
     if (round == 1) {
         document.getElementById("errormessage").style.display = 'block';
         document.getElementById("main").style.display = 'none';
