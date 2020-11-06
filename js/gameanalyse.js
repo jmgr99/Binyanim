@@ -1,12 +1,3 @@
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollX": true,
-        "bPaginate": false,
-        "bFilter": false,
-        "bInfo": false
-    } );
-} );
-
 const firebaseConfig = {
   apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
   authDomain: "testbase-c6baf.firebaseapp.com",
@@ -39,7 +30,6 @@ var score = 0
 var rad1 = "ק"
 var rad2 = "ט"
 var rad3 = "ל"
-
 var sheva = decode_utf8('\xD6\xB0');
 var hatefsegol = decode_utf8('\xD6\xB1');
 var hatefpataj = decode_utf8('\xD6\xB2\x20');
@@ -53,7 +43,6 @@ var holem = decode_utf8('\xD6\xB9');
 var qubuts = decode_utf8('\xD6\xBB\x20');
 var daguesh = decode_utf8('\xD6\xBC');
 var wrongsymbol = decode_utf8('\xE2\x9D\x8C')
-
 var conjdict = {'qal':
 			           {'perfect':
 				             {"Isg":[rad1,qamets,rad2,pataj,rad3,sheva,"ת",daguesh,hireq,"י"],
@@ -295,16 +284,11 @@ var conjdict = {'qal':
                 "femsg":["מ",hireq,"ת",sheva,rad1,pataj,rad2,daguesh,segol,rad3,segol,"ת"],
                 "mascpl":["מ",hireq,"ת",sheva,rad1,pataj,rad2,daguesh,sheva,rad3,hireq,"ים"],
                 "fempl":["מ",hireq,"ת",sheva,rad1,pataj,rad2,daguesh,sheva,rad3,"ו",holem,"ת"]},
-
     'infinitive':{
                 'absolute':["ה",hireq,"ת",sheva,rad1,pataj,rad2,daguesh,tsere,rad3],
                 'construct':["ל",sheva,"ה",hireq,"ת",sheva,rad1,pataj,rad2,daguesh,tsere,rad3]},},};
-
 //const randomElement = timearray[Math.floor(Math.random() * timearray.length)];
-
 //var person = Object.keys(conjdict[verbform][time]);
-
-
 function refresh() {
   ++round
   var exceptionformarray = [];
@@ -338,8 +322,6 @@ function refresh() {
     x.style.display = "none";}
     else if (x.style.display === 'block'){x.style.display = "none";
   }};
-
-
   var cbformarray = [qal,nifal,piel,pual,hifil,hofal,hitpael];
   var cbtimearray = [perfect,imperfect,imperative,infinitive,participle];
   function boxer(x){if (x.checked === false){exceptionformarray.push(x.id)}};
@@ -357,12 +339,12 @@ function refresh() {
   var personarray = Object.keys(conjdict[verbform][time]);
   var person = personarray[Math.floor(Math.random() * personarray.length)];
   var a1 = document.getElementById("a1").innerHTML = conjdict[verbform][time][person].join('');
-
   document.getElementById("formm").innerHTML = verbform;
   document.getElementById("time").innerHTML = time;
   document.getElementById("person").innerHTML = person;
   document.getElementById("a1").innerHTML = a1;}
   catch(err) {
+	console.log(err)
     if (round == 1) {
         document.getElementById("errormessage").style.display = 'block';
         document.getElementById("main").style.display = 'none';
@@ -374,7 +356,6 @@ function refresh() {
     document.getElementById("savealert").style.display = 'block';
     document.getElementById("hider").style.display = 'block';}}
       //if (counter == data.length){}};
-
   var aa1 = document.getElementById('aa1');
   var successAlert1 = document.getElementById('successAlert1');
 	var errorAlert1 = document.getElementById('errorAlert1');
@@ -382,7 +363,6 @@ function refresh() {
 	var errorAlert2 = document.getElementById('errorAlert2');
 	var successAlert3 = document.getElementById('successAlert3');
 	var errorAlert3 = document.getElementById('errorAlert3');
-
 	erase(successAlert1);
 	erase(errorAlert1);
 	erase(successAlert2);
@@ -396,7 +376,6 @@ function refresh() {
   verbperson.push(person);
   delete conjdict[verbform][time][person]
 };
-
 function myFunction() {
 	var aa1 = document.getElementById("aa1");
 	if (aa1.style.display === "none") {
@@ -421,7 +400,6 @@ var counter = 0;
 		var answertime = document.getElementById("time").innerText;
 		var inputValperson = document.getElementById("personselect").value;
 		var answerperson = document.getElementById("person").innerText;
-
 		if (inputValform === answerform){
 			$('#successAlert1').show();
 			$('#errorAlert1').hide();
@@ -440,19 +418,16 @@ var counter = 0;
       } else {
 			$('#successAlert3').hide();
 			$('#errorAlert3').show();}
-
    if (document.getElementById('successAlert1').style.display == 'none'){
         correctionform.push(wrongsymbol);
         console.log('pointdown')} else {correctionform.push(decode_utf8('\xE2\x9C\x85'));
         score++;
         console.log('pointup')};
-
     if (document.getElementById('successAlert2').style.display == 'none'){
         correctiontense.push(wrongsymbol);
         console.log('pointdown')} else {correctiontense.push(decode_utf8('\xE2\x9C\x85'));
         score++;
         console.log('pointup')};
-
     if (document.getElementById('successAlert3').style.display == 'none'){
         correctionperson.push(wrongsymbol);
         console.log('pointdown')} else {correctionperson.push(decode_utf8('\xE2\x9C\x85'));
@@ -474,8 +449,6 @@ var successAlert2 = document.getElementById('successAlert2');
 var errorAlert2 = document.getElementById('errorAlert2');
 var successAlert3 = document.getElementById('successAlert3');
 var errorAlert3 = document.getElementById('errorAlert3');
-
-
 function global(){
 if (round == 0) {refresh()} else {
 var errorAlert1 = document.getElementById('errorAlert1');
@@ -484,21 +457,15 @@ if (corrected == 0){correct();
 return corrected = 1}
 else {refresh()};
       return corrected = 0}}
-
-
 		window.onload = function() {
       document.getElementById("a1").innerHTML = "Choose your binyanim and click next!"
     };
-
 // Your web app's Firebase configuration
-
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // Setup access to the database
 let db = firebase.firestore();
 //let score = 0;
-
 function updateScores() {
     var t2 = $('#scores').DataTable();
     db.collection("scores").orderBy("score", "desc").get().then((snapshot) => {
@@ -508,11 +475,9 @@ function updateScores() {
           document.getElementById("hider2").style.display = 'block';
           document.getElementById("again").style.display = 'block';
           document.getElementById("h3").style.display = 'none';}
-
 function saveScore() {
     // Get name from input box
     let name = document.getElementById('name').value;
-
     // Make sure name has a value, if not send alert.
     if(name !== "") {
         // Add a new document in collection "scores"
@@ -534,7 +499,6 @@ document.getElementById("hider").style.display = 'none';
 //document.getElementById("scoreboard").style.display = 'block';
 };
 var selectallform = 0;
-
 function selectallForm(){
   if (selectallform == 0) {
   document.getElementById("qal").checked = true;
@@ -554,7 +518,6 @@ function selectallForm(){
   document.getElementById("hofal").checked = false;
   document.getElementById("hitpael").checked = false;
   return selectallform = 0;};};
-
 var selectalltense = 0;
 function selectallTense(){
   if (selectalltense == 0) {
@@ -571,4 +534,3 @@ function selectallTense(){
   document.getElementById("infinitive").checked = false;
   document.getElementById("participle").checked = false;
   return selectalltense = 0;};};
-
