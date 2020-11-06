@@ -26,6 +26,8 @@ var verbperson = [];
 var correctionform = [];
 var correctiontense = [];
 var correctionperson = [];
+var alreadyseen = [];
+var errorcount = 0
 var score = 0
 var rad1 = "ק"
 var rad2 = "ט"
@@ -331,31 +333,36 @@ function refresh() {
   for (x of cbtimearray){boxertime(x)};
   function underground(verbform){for (x of exceptiontimearray){delete conjdict[verbform][x]}};
   for (var x in conjdict){underground(x)};
-  try{
+
   var verbformarray = Object.keys(conjdict);
   var verbform = verbformarray[Math.floor(Math.random() * verbformarray.length)];
   var timearray = Object.keys(conjdict[verbform]);
   var time = timearray[Math.floor(Math.random() * timearray.length)];
   var personarray = Object.keys(conjdict[verbform][time]);
   var person = personarray[Math.floor(Math.random() * personarray.length)];
-  var a1 = document.getElementById("a1").innerHTML = conjdict[verbform][time][person].join('');
+  var final = conjdict[verbform][time][person]
+  if (alreadyseen.includes(final)==true && errorcount < 100){
+    console.log('error found')
+    ++errorcount
+    console.log(errorcount);
+    refresh()} else {
+  if (errorcount < 100) {
+  var a1 = document.getElementById("a1").innerHTML = final.join('');
   document.getElementById("formm").innerHTML = verbform;
   document.getElementById("time").innerHTML = time;
   document.getElementById("person").innerHTML = person;
-  document.getElementById("a1").innerHTML = a1;}
-  catch(err) {
-	console.log(err)
-    if (round == 1) {
-        document.getElementById("errormessage").style.display = 'block';
-        document.getElementById("main").style.display = 'none';
-      } else {
-    var a1 = document.getElementById('a1');
-    erase(a1);
-    document.getElementById("main").style.display = 'none';
-    document.getElementById("score").innerHTML = score;
-    document.getElementById("savealert").style.display = 'block';
-    document.getElementById("hider").style.display = 'block';}}
-      //if (counter == data.length){}};
+  document.getElementById("a1").innerHTML = a1;
+  verbs.push(a1);
+  verbverbform.push(verbform);
+  verbtime.push(time);
+  verbperson.push(person);
+  alreadyseen.push(final);}
+  else {var a1 = document.getElementById('a1');
+      erase(a1);
+      document.getElementById("main").style.display = 'none';
+      document.getElementById("score").innerHTML = score;
+      document.getElementById("savealert").style.display = 'block';
+      document.getElementById("hider").style.display = 'block';}};
   var aa1 = document.getElementById('aa1');
   var successAlert1 = document.getElementById('successAlert1');
 	var errorAlert1 = document.getElementById('errorAlert1');
@@ -370,11 +377,6 @@ function refresh() {
 	erase(successAlert3);
 	erase(errorAlert3);
 	erase(aa1);
-  verbs.push(a1);
-  verbverbform.push(verbform);
-  verbtime.push(time);
-  verbperson.push(person);
-  delete conjdict[verbform][time][person]
 };
 function myFunction() {
 	var aa1 = document.getElementById("aa1");
