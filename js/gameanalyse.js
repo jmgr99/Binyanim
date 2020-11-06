@@ -1,3 +1,12 @@
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollX": true,
+        "bPaginate": false,
+        "bFilter": false,
+        "bInfo": false
+    } );
+} );
+
 const firebaseConfig = {
   apiKey: "AIzaSyBsZFq8AkBEAj4D9dUQRmv26de4O2WYUt0",
   authDomain: "testbase-c6baf.firebaseapp.com",
@@ -354,7 +363,6 @@ function refresh() {
   document.getElementById("person").innerHTML = person;
   document.getElementById("a1").innerHTML = a1;}
   catch(err) {
-	console.log(err)
     if (round == 1) {
         document.getElementById("errormessage").style.display = 'block';
         document.getElementById("main").style.display = 'none';
@@ -563,3 +571,4 @@ function selectallTense(){
   document.getElementById("infinitive").checked = false;
   document.getElementById("participle").checked = false;
   return selectalltense = 0;};};
+
