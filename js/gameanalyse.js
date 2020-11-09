@@ -292,7 +292,6 @@ var conjdict = {'qal':
 //const randomElement = timearray[Math.floor(Math.random() * timearray.length)];
 //var person = Object.keys(conjdict[verbform][time]);
 function refresh() {
-  ++round
   var exceptionformarray = [];
   var exceptiontimearray = [];
   var qal = document.getElementById("qal")
@@ -352,11 +351,13 @@ function refresh() {
   document.getElementById("time").innerHTML = time;
   document.getElementById("person").innerHTML = person;
   document.getElementById("a1").innerHTML = a1;
+	document.getElementById("number").innerHTML = round;
   verbs.push(a1);
   verbverbform.push(verbform);
   verbtime.push(time);
   verbperson.push(person);
-  alreadyseen.push(final);}
+  alreadyseen.push(final);
+  ++round}
   else {var a1 = document.getElementById('a1');
       erase(a1);
       document.getElementById("main").style.display = 'none';
