@@ -340,12 +340,12 @@ function refresh() {
   var personarray = Object.keys(conjdict[verbform][time]);
   var person = personarray[Math.floor(Math.random() * personarray.length)];
   var final = conjdict[verbform][time][person]
-  if (alreadyseen.includes(final)==true && errorcount < 100){
+  if (alreadyseen.includes(final)==true && errorcount < 500){
     console.log('error found')
     ++errorcount
     console.log(errorcount);
     refresh()} else {
-  if (errorcount < 100) {
+  if (errorcount < 500) {
   var a1 = document.getElementById("a1").innerHTML = final.join('');
   document.getElementById("formm").innerHTML = verbform;
   document.getElementById("time").innerHTML = time;
